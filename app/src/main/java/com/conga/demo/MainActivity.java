@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText edtId, edtName, edtGender, edtAddress, edtNationality;
-    private Button btnSearch, btnAdd, btnClear;
+    private Button btnSearch, btnAdd, btnClear, btnUpdate, btnDelete;
     private DBHelper mDbHelper;
 
     @Override
@@ -29,12 +29,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnSearch = findViewById(R.id.btnSearch);
         btnAdd = findViewById(R.id.btnAdd);
         btnClear = findViewById(R.id.btnClear);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnDelete = findViewById(R.id.btnDelete);
 
         mDbHelper = new DBHelper(this);
 
         btnSearch.setOnClickListener(this);
         btnAdd.setOnClickListener(this);
         btnClear.setOnClickListener(this);
+        btnUpdate.setOnClickListener(this);
+        btnDelete.setOnClickListener(this);
+
+        btnAdd.setVisibility(View.INVISIBLE);
+        btnUpdate.setVisibility(View.INVISIBLE);
+        btnDelete.setVisibility(View.INVISIBLE);
+        btnClear.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -59,9 +68,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             edtGender.setText(mDbHelper.getPersonById(id).getGender());
             edtAddress.setText(mDbHelper.getPersonById(id).getAddress());
             edtNationality.setText(mDbHelper.getPersonById(id).getNationality());
+
+            btnClear.setVisibility(View.VISIBLE);
+            btnUpdate.setVisibility(View.VISIBLE);
+            btnDelete.setVisibility(View.VISIBLE);
+            btnAdd.setVisibility(View.INVISIBLE);
         }
-        else
+        else {
             Toast.makeText(MainActivity.this, "Person is not existed", Toast.LENGTH_SHORT).show();
+            btnAdd.setVisibility(View.VISIBLE);
+        }
     }
 
     private void add() {
