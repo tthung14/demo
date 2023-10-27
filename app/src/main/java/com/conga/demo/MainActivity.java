@@ -2,16 +2,29 @@ package com.conga.demo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText edtId, edtName, edtGender, edtAddress, edtNationality;
     private Button btnSearch, btnAdd, btnClear, btnUpdate, btnDelete;
     private DBHelper mDbHelper;
+
+    // date
+    private EditText edtDate;
+    private ImageButton imgDate;
+    private DatePickerDialog.OnDateSetListener setListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
 
+        // date
+        edtDate = findViewById(R.id.edtDate);
+        imgDate = findViewById(R.id.imgDate);
+
         mDbHelper = new DBHelper(this);
 
         btnSearch.setOnClickListener(this);
@@ -39,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnClear.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
+
+        // date
+        imgDate.setOnClickListener(this);
 
         btnAdd.setVisibility(View.INVISIBLE);
         btnUpdate.setVisibility(View.INVISIBLE);
@@ -58,7 +78,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnClear:
                 clear();
                 break;
+            case R.id.imgDate:
+                showDatePickerDialog();
+                break;
         }
+    }
+
+    private void showDatePickerDialog() {
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, selectedYear, selectedMonth, selectedDay) -> {
+            String selectedDate = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+            edtDate.setText(selectedDate);
+        }, year, month, day);
+        datePickerDialog.show();
     }
 
     private void search() {
