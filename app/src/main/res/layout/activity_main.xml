@@ -4,87 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <EditText
-        android:id="@+id/edtId"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="Enter Id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/btnSearch"
-        android:text="Search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    tools:context=".ui.MainActivity">
 
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/edtName"
-            android:hint="name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtGender"
-            android:hint="gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtAddress"
-            android:hint="address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <EditText
-            android:id="@+id/edtNationality"
-            android:hint="nationality"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:id="@+id/edtDate"
+            android:hint="Date"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
 
-        <TableLayout
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TableRow android:weightSum="2">
-                <Button
-                    android:id="@+id/btnAdd"
-                    android:text="Add"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <Button
-                    android:id="@+id/btnClear"
-                    android:text="Clear"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
-            <TableRow android:weightSum="2">
-                <Button
-                    android:id="@+id/btnUpdate"
-                    android:text="update"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <Button
-                    android:id="@+id/btnDelete"
-                    android:text="delete"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-            </TableRow>
-        </TableLayout>
+        <ImageButton
+            android:id="@+id/imgDate"
+            android:background="@drawable/img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
